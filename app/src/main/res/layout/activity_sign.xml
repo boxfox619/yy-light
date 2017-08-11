@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/activity_main_pagertabstrip"/>
+
+    <team.yylight.lightapplication.view.PagerSlidingTabStrip
+        android:layout_height="60dp"
+        android:layout_width="match_parent"
+        custom:pstsIndicatorHeight="15dp"
+        custom:pstsShouldExpand="true"
+        custom:pstsTriangleIndicator="true"
+        android:background="@color/background_tab_pressed"
+        custom:pstsIndicatorColor="#FFFFFF"
+        custom:pstsTextAllCaps="true"
+        android:id="@+id/activity_main_pagertabstrip"
+        android:layout_above="@+id/textView"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="" />
+
+    <android.support.v4.view.ViewPager
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:id="@+id/activity_main_pager"
+        android:layout_below="@+id/activity_main_pagertabstrip"/>
+
+</RelativeLayout>
