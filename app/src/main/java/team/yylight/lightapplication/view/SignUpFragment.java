@@ -72,6 +72,8 @@ public class SignUpFragment extends SignFragment {
             if(focusView!=null){
                 focusView.requestFocus();
             }else{
+                tab_first.setVisibility(View.GONE);
+                tab_second.setVisibility(View.VISIBLE);
                 nextStep = !nextStep;
             }
         }else{

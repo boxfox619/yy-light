@@ -1,5 +1,11 @@
 <resources>
+
+    <string name="url_load_items"></string>
+
     <string name="app_name">Light Application</string>
+
+    <string name="search">search</string>
+    <string name="action_add">아이템 추가</string>
 
     <string name="hint_id">아이디</string>
     <string name="hint_password">비밀번호</string>
