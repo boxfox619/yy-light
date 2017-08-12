@@ -1,11 +1,19 @@
 <resources>
 
     <string name="url_load_items"></string>
+    <string name="url_load_item_info"></string>
 
     <string name="app_name">Light Application</string>
 
+    <string name="item_info_summary">Summary</string>
+    <string name="item_info_preference">Preference</string>
+    <string name="item_info_writer">Writer</string>
+    <string name="item_info_date">Date</string>
+
     <string name="search">search</string>
     <string name="action_add">아이템 추가</string>
+    <string name="action_save">아이템 저장</string>
+    <string name="action_check">체크</string>
 
     <string name="hint_id">아이디</string>
     <string name="hint_password">비밀번호</string>

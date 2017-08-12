@@ -23,9 +23,9 @@
             android:name=".activity.SignActivity"
             android:theme="@style/NoActionBar" />
         <activity android:name=".activity.ProfileActivity" />
-        <activity
-            android:name=".activity.ItemsActivity" />
-        <activity android:name=".activity.ItemInfoActivity"></activity>
+        <activity android:name=".activity.ItemsActivity" />
+        <activity android:name=".activity.ItemInfoActivity" />
+        <activity android:name=".activity.ItemCreateActivity"></activity>
     </application>
 
 </manifest>
