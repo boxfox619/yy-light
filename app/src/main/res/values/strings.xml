@@ -2,8 +2,21 @@
 
     <string name="url_load_items"></string>
     <string name="url_load_item_info"></string>
+    <string name="url_image_upload"></string>
 
     <string name="app_name">Light Application</string>
+
+    <string name="item_create_light">Light</string>
+    <string name="item_create_light_amount">Light amount</string>
+    <string name="item_create_color_temperature">Color Tempertaure</string>
+    <string name="item_create_random_setup">Random Setup</string>
+    <string name="item_create_social">Social</string>
+    <string name="item_create_visible_item">Visible Item</string>
+    <string name="item_create_visible_comment">Visible comment</string>
+    <string name="item_create_tags">Tags</string>
+    <string name="item_create_image">Image</string>
+    <string name="item_create_upload_image">Upload Image</string>
+    <string name="item_create_create">Create</string>
 
     <string name="item_info_summary">Summary</string>
     <string name="item_info_preference">Preference</string>
