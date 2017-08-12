@@ -83,7 +83,10 @@
                     android:id="@+id/btn_random_setup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/item_create_random_setup" />
+                    android:text="@string/item_create_random_setup"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/rounded_button_green"/>
 
 
             </LinearLayout>
@@ -197,7 +200,10 @@
                     android:id="@+id/btn_upload_image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/item_create_upload_image" />
+                    android:text="@string/item_create_upload_image"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/rounded_button_green" />
 
             </LinearLayout>
 
@@ -212,7 +218,9 @@
         android:layout_height="wrap_content"
         android:text="@string/item_create_create"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/white"
+        android:background="@drawable/rectangle_button_primary" />
 
 
 

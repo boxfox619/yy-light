@@ -17,10 +17,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.SignActivity"
+            android:name=".activity.sign.SignActivity"
             android:theme="@style/NoActionBar" />
-        <activity android:name=".activity.ProfileActivity" />
-        <activity android:name=".activity.ItemsActivity" />
+        <activity android:name=".activity.items.ItemsActivity" />
         <activity android:name=".activity.ItemInfoActivity" />
         <activity android:name=".activity.ItemCreateActivity" />
         <activity android:name=".activity.SplashActivity"

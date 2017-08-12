@@ -1,4 +1,4 @@
-package team.yylight.lightapplication.item;
+package team.yylight.lightapplication.data;
 
 /**
  * Created by boxfox on 2017-08-11.

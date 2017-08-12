@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package team.yylight.lightapplication.view;
+package team.yylight.lightapplication.activity.sign.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

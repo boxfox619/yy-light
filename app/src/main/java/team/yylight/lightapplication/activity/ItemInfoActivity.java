@@ -1,12 +1,16 @@
 package team.yylight.lightapplication.activity;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,6 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import io.realm.Realm;
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
 import team.yylight.lightapplication.R;
 
@@ -72,8 +77,7 @@ public class ItemInfoActivity extends AppCompatActivity {
                 return true;
 
             case R.id.action_save:
-                //item add
-
+                saveItem();
                 return true;
             case R.id.action_check:
                 //item check
@@ -82,6 +86,25 @@ public class ItemInfoActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void saveItem(){
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        realm.commitTransaction();
+
+        View view = getLayoutInflater().inflate(R.layout.layout_saved_dialog, null);
+        AlertDialog dialog = new AlertDialog.Builder(ItemInfoActivity.this)
+                .setView(view)
+                .create();
+
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+
+        wlp.gravity = Gravity.BOTTOM;
+        wlp.flags &= ~WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+        window.setAttributes(wlp);
+        dialog.show();
     }
 
     private void loadItemInfo(){

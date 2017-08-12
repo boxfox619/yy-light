@@ -1,4 +1,4 @@
-package team.yylight.lightapplication.item;
+package team.yylight.lightapplication.activity.items;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +17,7 @@ import java.util.List;
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
 import team.yylight.lightapplication.R;
 import team.yylight.lightapplication.activity.ItemInfoActivity;
+import team.yylight.lightapplication.data.LightItem;
 
 public class LightRecyclerViewAdapter extends RecyclerView.Adapter<LightRecyclerViewAdapter.LightItemViewHolder> {
     private List<LightItem> lightItemList;

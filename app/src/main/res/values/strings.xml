@@ -3,6 +3,8 @@
     <string name="url_load_items"></string>
     <string name="url_load_item_info"></string>
     <string name="url_image_upload"></string>
+    <string name="url_login"></string>
+    <string name="url_register"></string>
 
     <string name="app_name">Light Application</string>
 

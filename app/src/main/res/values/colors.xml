@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#678CCC</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimaryDark">#5c7eb7</color>
+    <color name="colorAccent">#62DCAF</color>
+    <color name="colorAccentBright">#b0edd7</color>
+    <color name="colorPink">#FC7B7B</color>
+    <color name="colorPinkDark">#e26e6e</color>
+
+    <color name="colorBtn1">#62DCAF</color>
+    <color name="colorBtn1Dark">#58c69d</color>
 
     <color name="background_tab_pressed">#678CCC</color>
 </resources>

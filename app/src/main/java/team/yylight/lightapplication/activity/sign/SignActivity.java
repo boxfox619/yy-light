@@ -1,4 +1,4 @@
-package team.yylight.lightapplication.activity;
+package team.yylight.lightapplication.activity.sign;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,11 +10,11 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.List;
 
-import team.yylight.lightapplication.view.PagerSlidingTabStrip;
+import team.yylight.lightapplication.activity.sign.view.PagerSlidingTabStrip;
 import team.yylight.lightapplication.R;
-import team.yylight.lightapplication.view.SignFragment;
-import team.yylight.lightapplication.view.SignInFragment;
-import team.yylight.lightapplication.view.SignUpFragment;
+import team.yylight.lightapplication.activity.sign.view.SignFragment;
+import team.yylight.lightapplication.activity.sign.view.SignInFragment;
+import team.yylight.lightapplication.activity.sign.view.SignUpFragment;
 
 public class SignActivity extends AppCompatActivity {
     private ViewPager pager;

@@ -1,4 +1,4 @@
-package team.yylight.lightapplication.view;
+package team.yylight.lightapplication.activity.sign.view;
 
 import android.support.v4.app.Fragment;
 

@@ -1,19 +1,15 @@
-package team.yylight.lightapplication.activity;
+package team.yylight.lightapplication.activity.items;
 
 import android.app.ActionBar;
-import android.support.v4.app.NavUtils;
-import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.androidquery.AQuery;
@@ -28,8 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import team.yylight.lightapplication.R;
-import team.yylight.lightapplication.item.LightItem;
-import team.yylight.lightapplication.item.LightRecyclerViewAdapter;
+import team.yylight.lightapplication.data.LightItem;
 
 public class ItemsActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;

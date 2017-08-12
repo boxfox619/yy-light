@@ -3,13 +3,15 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <com.ssomai.android.scalablelayout.ScalableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:scale_base_width="400"
-        app:scale_base_height="300">
+        app:scale_base_height="340">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,18 +24,20 @@
             android:orientation="horizontal">
             
             <View
+                android:id="@+id/step_tab1"
                 android:layout_width="10dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="2dp"
-                android:background="@android:color/darker_gray"/>
+                android:background="@drawable/circle_dark"/>
 
             <View
+                android:id="@+id/step_tab2"
                 android:layout_width="10dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="2dp"
-                android:background="@android:color/darker_gray"/>
+                android:background="@drawable/circle_bright"/>
         </LinearLayout>
 
         <LinearLayout
@@ -56,6 +60,7 @@
                     android:id="@+id/input_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
                     android:hint="@string/hint_id" />
 
             </android.support.design.widget.TextInputLayout>
@@ -70,6 +75,7 @@
                     android:id="@+id/input_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textPassword"
                     android:hint="@string/hint_password" />
 
             </android.support.design.widget.TextInputLayout>
@@ -84,6 +90,7 @@
                     android:id="@+id/input_password_confirm"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textPassword"
                     android:hint="@string/hint_password" />
 
             </android.support.design.widget.TextInputLayout>
@@ -163,6 +170,9 @@
                 android:id="@+id/btn_action"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:textColor="@android:color/white"
+                android:background="@drawable/rounded_button_green"
+                style="?android:attr/borderlessButtonStyle"
                 android:text="다음단계"/>
         </LinearLayout>
 
