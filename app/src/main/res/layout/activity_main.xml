@@ -1,18 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="team.yylight.lightapplication.MainActivity">
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/iv_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/bg_splash"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/tv_tempeture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_wate"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp"
+        android:text="TextView"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        tools:text="10" />
+
+    <TextView
+        android:id="@+id/tv_wate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:text="TextView"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        tools:text="19" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        tools:text="조명이 없습니다"
+        android:layout_above="@+id/textView2"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tv_tempeture"
+        android:layout_alignTop="@+id/tv_tempeture"
+        android:layout_toStartOf="@+id/tv_tempeture"
+        app:srcCompat="@drawable/ic_fahrenheit" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_flash"
+        android:layout_alignTop="@+id/tv_wate"
+        android:layout_toStartOf="@+id/tv_wate"
+        android:layout_alignBottom="@+id/tv_wate" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_c"
+        android:layout_alignTop="@+id/tv_tempeture"
+        android:layout_toEndOf="@+id/tv_tempeture"
+        android:layout_alignBottom="@+id/tv_tempeture" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_w"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@+id/tv_wate"
+        android:layout_toEndOf="@+id/tv_wate"
+        android:layout_alignBottom="@+id/tv_wate" />
+
+    <ImageButton
+        android:id="@+id/iv_view_items"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_items"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/round_ripple"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:id="@+id/iv_view_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_info"
+        android:background="@drawable/round_ripple"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" >
+
+        <Button
+            android:id="@+id/btn_create_light"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/create_item"
+            style="?android:attr/borderlessButtonStyle"
+            android:textColor="@android:color/white"
+            android:background="@drawable/rounded_button_green" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -10,6 +10,8 @@
 
     <string name="get_tarted">Get started</string>
 
+    <string name="create_item">조명 추가</string>
+
     <string name="item_create_light">Light</string>
     <string name="item_create_light_amount">Light amount</string>
     <string name="item_create_color_temperature">Color Tempertaure</string>
