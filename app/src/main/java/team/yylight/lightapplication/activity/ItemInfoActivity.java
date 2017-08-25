@@ -43,7 +43,7 @@ public class ItemInfoActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         View view = getLayoutInflater().inflate(R.layout.actionbar_title_view, null);
-        ((TextView)view.findViewById(R.id.tv_back_target)).setText("Items");
+        ((TextView) view.findViewById(R.id.tv_back_target)).setText("Items");
         view.findViewById(R.id.button_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,13 +52,13 @@ public class ItemInfoActivity extends AppCompatActivity {
         });
         getSupportActionBar().setCustomView(view);
 
-        tv_summary = (TextView)findViewById(R.id.tv_summary);
-        tv_score = (TextView)findViewById(R.id.tv_score);
-        tv_writer = (TextView)findViewById(R.id.tv_writer);
-        tv_date = (TextView)findViewById(R.id.tv_date);
+        tv_summary = (TextView) findViewById(R.id.tv_summary);
+        tv_score = (TextView) findViewById(R.id.tv_score);
+        tv_writer = (TextView) findViewById(R.id.tv_writer);
+        tv_date = (TextView) findViewById(R.id.tv_date);
         iv_thumbnail = (ImageView) findViewById(R.id.iv_thumbnail);
-        ratingBar = (MaterialRatingBar)findViewById(R.id.ratingBar);
-        layout_tags = (LinearLayout)findViewById(R.id.layout_tags);
+        ratingBar = (MaterialRatingBar) findViewById(R.id.ratingBar);
+        layout_tags = (LinearLayout) findViewById(R.id.layout_tags);
         loadItemInfo();
     }
 
@@ -88,7 +88,7 @@ public class ItemInfoActivity extends AppCompatActivity {
         }
     }
 
-    private void saveItem(){
+    private void saveItem() {
         Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
         realm.commitTransaction();
@@ -107,27 +107,28 @@ public class ItemInfoActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    private void loadItemInfo(){
+    private void loadItemInfo() {
         final AQuery aq = new AQuery(ItemInfoActivity.this);
-        aq.ajax(getResources().getString(R.string.url_load_item_info), JSONObject.class, new AjaxCallback<JSONObject>(){
-            public void callback(String url, JSONObject object, AjaxStatus status){
-                try {
-                    ((TextView)getSupportActionBar().getCustomView().findViewById(R.id.tv_title)).setText(object.getString("name"));
-                    tv_summary.setText(object.getString("summary"));
-                    tv_writer.setText(object.getString("writer"));
-                    tv_score.setText(String.format("%.2f", object.getDouble("score")));
-                    ratingBar.setRating(Float.valueOf(String.format("%.2f", object.getDouble("score"))));
-                    tv_date.setText(object.getString("date"));
-                    JSONArray tags = object.getJSONArray("tags");
-                    for(int i = 0 ; i<tags.length();i++){
-                        View view = getLayoutInflater().inflate(R.layout.tag_card, null);
-                        ((TextView)view.findViewById(R.id.tv_tag)).setText(tags.getString(i));
-                        layout_tags.addView(view);
+        aq.ajax(getResources().getString(R.string.url_load_item_info), JSONObject.class, new AjaxCallback<JSONObject>() {
+            public void callback(String url, JSONObject object, AjaxStatus status) {
+                if (status.getCode() == 200)
+                    try {
+                        ((TextView) getSupportActionBar().getCustomView().findViewById(R.id.tv_title)).setText(object.getString("name"));
+                        tv_summary.setText(object.getString("summary"));
+                        tv_writer.setText(object.getString("writer"));
+                        tv_score.setText(String.format("%.2f", object.getDouble("score")));
+                        ratingBar.setRating(Float.valueOf(String.format("%.2f", object.getDouble("score"))));
+                        tv_date.setText(object.getString("date"));
+                        JSONArray tags = object.getJSONArray("tags");
+                        for (int i = 0; i < tags.length(); i++) {
+                            View view = getLayoutInflater().inflate(R.layout.tag_card, null);
+                            ((TextView) view.findViewById(R.id.tv_tag)).setText(tags.getString(i));
+                            layout_tags.addView(view);
+                        }
+                        aq.id(iv_thumbnail).image(object.getString("imageUrl"), false, true, 0, 0, null, Constants.FADE_IN);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                    aq.id(iv_thumbnail).image(object.getString("imageUrl"), false, true, 0, 0, null, Constants.FADE_IN);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
 
             }
         });

@@ -3,6 +3,7 @@ package team.yylight.lightapplication.activity.items;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.androidquery.AQuery;
 import com.androidquery.util.Constants;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
@@ -23,14 +25,14 @@ public class LightRecyclerViewAdapter extends RecyclerView.Adapter<LightRecycler
     private List<LightItem> lightItemList;
     private Context mContext;
 
-    public LightRecyclerViewAdapter(Context context, List<LightItem> lightItemList) {
-        this.lightItemList = lightItemList;
+    public LightRecyclerViewAdapter(Context context) {
+        this.lightItemList = new ArrayList();
         this.mContext = context;
     }
 
     @Override
     public LightItemViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_recycleritem, null);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_recycleritem, viewGroup, false);
         LightItemViewHolder viewHolder = new LightItemViewHolder(view);
         return viewHolder;
     }
@@ -49,7 +51,17 @@ public class LightRecyclerViewAdapter extends RecyclerView.Adapter<LightRecycler
 
     @Override
     public int getItemCount() {
-        return (null != lightItemList ? lightItemList.size() : 0);
+        return lightItemList.size();
+    }
+
+    public void add(LightItem item){
+        lightItemList.add(item);
+        this.notifyDataSetChanged();
+    }
+
+    public void clear(){
+        lightItemList.removeAll(lightItemList);
+        this.notifyDataSetChanged();
     }
 
     class LightItemViewHolder extends RecyclerView.ViewHolder {
@@ -64,9 +76,7 @@ public class LightRecyclerViewAdapter extends RecyclerView.Adapter<LightRecycler
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(mContext, ItemInfoActivity.class);
-                    intent.putExtra("number", itemNumber);
-                    mContext.startActivity(intent);
+                    mContext.startActivity(new Intent(mContext, ItemInfoActivity.class));
                 }
             });
             this.imageView = view.findViewById(R.id.iv_thumbnail);

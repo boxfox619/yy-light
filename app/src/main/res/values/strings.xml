@@ -1,10 +1,15 @@
 <resources>
 
-    <string name="url_load_items"></string>
+    <string name="url_host">http://ss5h.namsu.xyz:9940</string>
     <string name="url_load_item_info"></string>
+    <string name="url_load_items">/lights/list/</string>
+    <string name="url_upload_item">/lights/create/</string>
+    <string name="url_modify_item">/lights/update/pk/</string>
+    <string name="url_delete_item">/lights/delete/pk/</string>
+    <string name="url_search_tag">/lights/search-tag/</string>
     <string name="url_image_upload"></string>
-    <string name="url_login"></string>
-    <string name="url_register"></string>
+    <string name="url_login">/accounts/sign-in/</string>
+    <string name="url_register">/accounts/sign-up/</string>
 
     <string name="app_name">Light Application</string>
 

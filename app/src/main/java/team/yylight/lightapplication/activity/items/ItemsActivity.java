@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -49,9 +50,16 @@ public class ItemsActivity extends AppCompatActivity {
             }
         });
         getSupportActionBar().setCustomView(view);
-
         mRecyclerView = (RecyclerView)findViewById(R.id.recycler_view);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setHasFixedSize(true);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+
+        adapter = new LightRecyclerViewAdapter(ItemsActivity.this);
+        mRecyclerView.setAdapter(adapter);
+        loadLightItems();
     }
 
     @Override
@@ -79,20 +87,18 @@ public class ItemsActivity extends AppCompatActivity {
 
     private void loadLightItems(){
         AQuery aq = new AQuery(ItemsActivity.this);
-        aq.ajax(getResources().getString(R.string.url_load_items),JSONArray.class,  new AjaxCallback<JSONArray>(){
+        aq.ajax(getResources().getString(R.string.url_host)+getResources().getString(R.string.url_load_items),JSONArray.class,  new AjaxCallback<JSONArray>(){
             public void callback(String url, JSONArray arr, AjaxStatus status)
             {
-                List<LightItem> lightItemList = new ArrayList<LightItem>();
+                adapter.clear();
                 for(int i = 0; i<arr.length(); i++){
                     try {
                         JSONObject jsonObject = arr.getJSONObject(i);
-                        lightItemList.add(new LightItem(jsonObject.getInt("number"), jsonObject.getString("title"),jsonObject.getString("subscribe"),jsonObject.getString("image"),jsonObject.getDouble("score")));
+                        adapter.add(new LightItem(jsonObject.getInt("id"), jsonObject.getString("title"),jsonObject.getString("content"), getResources().getString(R.string.url_host)+jsonObject.getString("thumbnail"),jsonObject.getDouble("amount")));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
-                adapter = new LightRecyclerViewAdapter(ItemsActivity.this, lightItemList);
-                mRecyclerView.setAdapter(adapter);
             }
         });
     }
