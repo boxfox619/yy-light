@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -42,6 +43,15 @@ public class SignInFragment extends SignFragment {
         View v = inflater.inflate(R.layout.fragment_signin, container, false);
         et_id = v.findViewById(R.id.input_id);
         et_password = v.findViewById(R.id.input_password);
+        et_password.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (!hasFocus) {
+                    InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
+                    inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+                }
+            }
+        });
         btnLogin = v.findViewById(R.id.btn_login);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,10 +86,10 @@ public class SignInFragment extends SignFragment {
             final String id = et_id.getText().toString();
             final String password = et_password.getText().toString();
             Map<String, Object> params = new HashMap<>();
-            params.put("id", id);
+            params.put("username", id);
             params.put("password", et_password.getText());
             AQuery aq = new AQuery(getActivity());
-            aq.ajax(getResources().getString(R.string.url_login), params, String.class, new AjaxCallback<String>() {
+            aq.ajax(getResources().getString(R.string.url_host) + getResources().getString(R.string.url_login), params, String.class, new AjaxCallback<String>() {
                 public void callback(String url, String result, AjaxStatus status) {
                     if (status.getCode() == 200) {
                         Realm realm = Realm.getDefaultInstance();
