@@ -69,6 +69,7 @@
                     android:text="@string/item_create_color_temperature" />
 
                 <ImageView
+                    android:id="@+id/iv_tempeature"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/img_color_tempeature"
@@ -79,14 +80,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
-                <Button
-                    android:id="@+id/btn_random_setup"
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/item_create_random_setup"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:textColor="@android:color/white"
-                    android:background="@drawable/rounded_button_green"/>
+                    android:gravity="center">
+                    <Button
+                        android:id="@+id/btn_random_setup"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="200dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/rounded_button_green"
+                        android:text="@string/item_create_random_setup"
+                        android:textColor="@android:color/white" />
+                </RelativeLayout>
+
+
 
 
             </LinearLayout>
@@ -196,14 +205,19 @@
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp">
 
-                <Button
-                    android:id="@+id/btn_upload_image"
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/item_create_upload_image"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:textColor="@android:color/white"
-                    android:background="@drawable/rounded_button_green" />
+                    android:gravity="center">
+                    <Button
+                        android:id="@+id/btn_upload_image"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="200dp"
+                        android:layout_height="35dp"
+                        android:background="@drawable/rounded_button_green"
+                        android:text="@string/item_create_upload_image"
+                        android:textColor="@android:color/white" />
+                </RelativeLayout>
 
             </LinearLayout>
 

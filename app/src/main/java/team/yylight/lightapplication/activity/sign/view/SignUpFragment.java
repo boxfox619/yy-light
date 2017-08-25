@@ -1,12 +1,15 @@
 package team.yylight.lightapplication.activity.sign.view;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -48,8 +51,6 @@ public class SignUpFragment extends SignFragment {
     private boolean nextStep = false;
     private View tab_first, tab_second;
 
-    private String birthday;
-
     public static final SignFragment newInstance(String message) {
         SignUpFragment f = new SignUpFragment();
         Bundle bdl = new Bundle(1);
@@ -68,8 +69,8 @@ public class SignUpFragment extends SignFragment {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 if (!hasFocus) {
-                    InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
-                    inputMethodManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
                 }
             }
         });

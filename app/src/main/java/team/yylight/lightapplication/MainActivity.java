@@ -55,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
             }
         });
-        startActivity(new Intent(MainActivity.this, ItemsActivity.class));
     }
 
     private void setBlurImage(ImageView imageView) {

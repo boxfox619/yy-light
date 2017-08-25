@@ -26,6 +26,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
+    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:26.0.0-alpha1'
     compile 'com.ssomai:android.scalablelayout:2.1.1'
@@ -34,5 +35,4 @@ dependencies {
     compile 'com.googlecode.android-query:android-query:0.25.9'
     compile 'com.android.support:cardview-v7:26.0.0-alpha1'
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
 }
