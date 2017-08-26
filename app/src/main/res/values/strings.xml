@@ -17,6 +17,16 @@
 
     <string name="create_item">조명 추가</string>
 
+
+    <string name="item_setting_clear">Clear</string>
+    <string name="item_setting_save">Save</string>
+    <string name="item_create_title">Title</string>
+    <string name="item_create_content">Content</string>
+    <string name="item_setting_overview1">Consumption power</string>
+    <string name="item_setting_overview2">Temperature</string>
+    <string name="item_setting_overview">Overview</string>
+    <string name="item_setting_time">Time</string>
+    <string name="item_create_info">Info</string>
     <string name="item_create_light">Light</string>
     <string name="item_create_light_amount">Light amount</string>
     <string name="item_create_color_temperature">Color Tempertaure</string>

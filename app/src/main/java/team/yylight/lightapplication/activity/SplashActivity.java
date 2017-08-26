@@ -35,7 +35,7 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
             }
         });
-        startActivity(new Intent(SplashActivity.this, ItemCreateActivity.class));
+        startActivity(new Intent(SplashActivity.this, SettingActivity.class));
     }
 
     private boolean isLogined(){

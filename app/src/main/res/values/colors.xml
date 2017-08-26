@@ -11,4 +11,7 @@
     <color name="colorBtn1Dark">#58c69d</color>
 
     <color name="background_tab_pressed">#678CCC</color>
+
+    <drawable name="time_selector_active">#62DCAF</drawable>
+    <drawable name="time_selector_gray">#EFEFEF</drawable>
 </resources>
