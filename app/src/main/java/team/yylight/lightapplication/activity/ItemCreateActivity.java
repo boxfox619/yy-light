@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
@@ -142,9 +143,9 @@ public class ItemCreateActivity extends AppCompatActivity {
             aq.ajax(getResources().getString(R.string.url_image_upload), params, String.class, new AjaxCallback<String>(){
                 public void callback(String url, String object, AjaxStatus status){
                     if(status.getCode()==200){
-
+                        finish();
                     }else{
-
+                        Toast.makeText(ItemCreateActivity.this, "아이템 생성에 실패했습니다.", Toast.LENGTH_SHORT);
                     }
                 }
             });

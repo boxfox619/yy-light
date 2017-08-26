@@ -149,7 +149,7 @@ public class SignUpFragment extends SignFragment {
             Map<String, Object> params = new HashMap<>();
             params.put("username", info.getId());
             params.put("password", info.getPassword());
-            params.put("birth", info.getBirthday());
+            params.put("birthday", info.getBirthday());
             params.put("gender", info.getSex());
             AQuery aq = new AQuery(getActivity());
             aq.ajax(getResources().getString(R.string.url_host) + getResources().getString(R.string.url_register), params, String.class, new AjaxCallback<String>() {

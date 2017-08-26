@@ -19,7 +19,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        Realm.init(SplashActivity.this);
+        Realm.init(this);
 
         btnStart = (Button) findViewById(R.id.btn_start);
         btnStart.setOnClickListener(new View.OnClickListener() {
@@ -35,7 +35,6 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
             }
         });
-        startActivity(new Intent(SplashActivity.this, SettingActivity.class));
     }
 
     private boolean isLogined(){

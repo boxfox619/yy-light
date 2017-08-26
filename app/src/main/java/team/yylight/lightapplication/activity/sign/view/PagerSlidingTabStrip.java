@@ -52,12 +52,10 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 		public int getPageIconResId(int position);
 	}
 
-	// @formatter:off
 	private static final int[] ATTRS = new int[] {
 		android.R.attr.textSize,
 		android.R.attr.textColor
     };
-	// @formatter:on
 
 	private LinearLayout.LayoutParams defaultTabLayoutParams;
 	private LinearLayout.LayoutParams expandedTabLayoutParams;

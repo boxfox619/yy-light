@@ -138,17 +138,17 @@ public class SettingActivity extends AppCompatActivity {
                         parent.removeView(timeView);
                         parent.addView(button, idx);
                     }
-                    switch(view.getId()){
-                        case R.id.time_10m:
+                    switch(((Button)view).getText().toString()){
+                        case "10m":
                             selectedTime = 10;
                             break;
-                        case R.id.time_30m:
+                        case "30m":
                             selectedTime = 30;
                             break;
-                        case R.id.time_1h:
+                        case "1h":
                             selectedTime = 60;
                             break;
-                        case R.id.time_3h:
+                        case "3h":
                             selectedTime = 180;
                             break;
                     }
