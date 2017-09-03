@@ -173,35 +173,14 @@
                         android:id="@+id/rb_item_show"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Show"/>
+                        android:text="@string/show"
+                        android:buttonTint="@color/colorPrimary"/>
                     <RadioButton
                         android:id="@+id/rb_item_hide"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Show"/>
-                </RadioGroup>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/item_create_visible_comment" />
-
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-                    <RadioButton
-                        android:id="@+id/rb_comment_show"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Show"/>
-                    <RadioButton
-                        android:id="@+id/rb_comment_hide"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Show"/>
+                        android:text="@string/hide"
+                        android:buttonTint="@color/colorPrimary"/>
                 </RadioGroup>
 
                 <LinearLayout

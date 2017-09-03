@@ -35,8 +35,11 @@ public class UserInfo extends RealmObject {
         this.password = password;
     }
 
-    public boolean getSex() {
-        return sex;
+    public String getSex() {
+        if(sex)
+            return "True";
+        else
+            return  "False";
     }
 
     public void setSex(boolean sex) {

@@ -36,8 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/imageView2"
-            android:layout_centerVertical="true"
-            android:text="main" />
+            android:layout_centerVertical="true"/>
     </RelativeLayout>
 
 
