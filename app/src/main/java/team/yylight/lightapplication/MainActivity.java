@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setBlurImage((ImageView) findViewById(R.id.iv_background));
+        //setBlurImage((ImageView) findViewById(R.id.iv_background));
 
 
         tvLightName = (TextView) findViewById(R.id.tv_name);
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void setBlurImage(ImageView imageView) {
+    /*private void setBlurImage(ImageView imageView) {
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bg_splash);
         RenderScript rs = RenderScript.create(getApplicationContext());
         Allocation input = Allocation.createFromBitmap(rs, bitmap);
@@ -70,5 +70,5 @@ public class MainActivity extends AppCompatActivity {
         output.copyTo(bitmap);
 
         imageView.setImageBitmap(bitmap);
-    }
+    }*/
 }

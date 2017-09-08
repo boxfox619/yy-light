@@ -46,9 +46,9 @@ public class ItemCreateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_create);
 
+        getSupportActionBar().setTitle("조명 추가");
+
         sw_preview = (Switch) findViewById(R.id.sw_preview);
-        visibleCommentHide = (RadioButton) findViewById(R.id.rb_comment_hide);
-        visibleCommentShow = (RadioButton) findViewById(R.id.rb_comment_show);
         visibleItemShow = (RadioButton) findViewById(R.id.rb_item_show);
         visibleItemHide = (RadioButton) findViewById(R.id.rb_item_hide);
         tags = (EditText)findViewById(R.id.et_tags);

@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/bg_moon"
+        android:src="@drawable/main_image_half"
         android:layout_above="@+id/activity_main_pagertabstrip"/>
 
     <team.yylight.lightapplication.activity.sign.view.PagerSlidingTabStrip
