@@ -29,11 +29,10 @@
         android:layout_below="@+id/tv_wate"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="13dp"
-        android:text="TextView"
         android:textColor="@android:color/white"
         android:textSize="30sp"
         android:textStyle="bold"
-        tools:text="10" />
+        android:text="0" />
 
     <TextView
         android:id="@+id/tv_wate"
@@ -41,21 +40,19 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"
-        android:text="TextView"
         android:textColor="@android:color/white"
         android:textSize="30sp"
         android:textStyle="bold"
-        tools:text="19" />
+        android:text="0" />
 
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:textColor="@android:color/white"
         android:textSize="30sp"
         android:textStyle="bold"
-        tools:text="조명이 없습니다"
+        android:text="조명이 없습니다"
         android:layout_above="@+id/textView2"
         android:layout_centerHorizontal="true" />
 

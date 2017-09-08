@@ -37,6 +37,8 @@ public class ItemCreateActivity extends AppCompatActivity {
     private EditText tags;
     private Button randomSetup, uploadImage, create;
 
+    private EditText etTitle, etContent;
+
     private String uploadedImage;
 
     @Override
@@ -50,6 +52,9 @@ public class ItemCreateActivity extends AppCompatActivity {
         visibleItemShow = (RadioButton) findViewById(R.id.rb_item_show);
         visibleItemHide = (RadioButton) findViewById(R.id.rb_item_hide);
         tags = (EditText)findViewById(R.id.et_tags);
+
+        etTitle = (EditText)findViewById(R.id.et_title);
+        etContent = (EditText)findViewById(R.id.et_content);
 
         amount = (SeekBar) findViewById(R.id.sb_color_amount);
         tempeature = (SeekBar) findViewById(R.id.sb_color_temperature);
@@ -104,7 +109,8 @@ public class ItemCreateActivity extends AppCompatActivity {
     }
 
     private void randomSetup(){
-
+        amount.setProgress((int)(System.currentTimeMillis()%100));
+        tempeature.setProgress((int)(System.currentTimeMillis()*2%100));
     }
 
     private void uploadImage(){
@@ -125,22 +131,18 @@ public class ItemCreateActivity extends AppCompatActivity {
     }
 
     private void createItem() {
-        try {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("visibleItem", visibleItemShow.isChecked());
-            jsonObject.put("visibleComment", visibleCommentShow.isChecked());
-            jsonObject.put("colorAmount", amount.getProgress());
-            jsonObject.put("colorTempeture", tempeature.getProgress());
-            jsonObject.put("image", uploadedImage);
-            JSONArray arr = new JSONArray();
-            for (String str : tags.getText().toString().split(",")) {
-                arr.put(str);
-            }
-            jsonObject.put("tags", arr);
+            String tagsStr = tags.getText().toString().replaceAll(",", "+");
             Map<String,Object> params = new HashMap<>();
-            params.put("Data", jsonObject);
+            params.put("title", etTitle.getText().toString());
+            params.put("content", etContent.getText().toString());
+            params.put("thumbnail", uploadedImage);
+            params.put("tags", tagsStr);
+            params.put("visibleItem", visibleItemShow.isChecked());
+            params.put("visibleComment", visibleCommentShow.isChecked());
+            params.put("amount", amount.getProgress());
+            params.put("temperature", tempeature.getProgress());
             AQuery aq = new AQuery(ItemCreateActivity.this);
-            aq.ajax(getResources().getString(R.string.url_image_upload), params, String.class, new AjaxCallback<String>(){
+            aq.ajax(getString(R.string.url_host)+getResources().getString(R.string.url_upload_item), params, String.class, new AjaxCallback<String>(){
                 public void callback(String url, String object, AjaxStatus status){
                     if(status.getCode()==200){
                         finish();
@@ -149,9 +151,6 @@ public class ItemCreateActivity extends AppCompatActivity {
                     }
                 }
             });
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
     }
 
 

@@ -150,7 +150,7 @@ public class SignUpFragment extends SignFragment {
             params.put("username", info.getId());
             params.put("password", info.getPassword());
             params.put("birthday", info.getBirthday());
-            params.put("gender", info.getSex());
+            params.put("gender", info.getSex()?"True":"False");
             AQuery aq = new AQuery(getActivity());
             aq.ajax(getResources().getString(R.string.url_host) + getResources().getString(R.string.url_register), params, String.class, new AjaxCallback<String>() {
                 public void callback(String url, String result, AjaxStatus status) {
@@ -162,6 +162,7 @@ public class SignUpFragment extends SignFragment {
                         startActivity(new Intent(getActivity(), MainActivity.class));
                         getActivity().finish();
                     } else {
+                        Log.e("SIGNUP", status.getMessage()+"  "+status.getError()+"   "+result);
                         Toast.makeText(getActivity(), "회원가입 실패", Toast.LENGTH_LONG).show();
                     }
                 }
