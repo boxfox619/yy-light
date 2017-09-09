@@ -206,7 +206,6 @@ public class ItemCreateActivity extends AppCompatActivity {
         String tagsStr = tags.getText().toString().replaceAll(",", "+");
         AjaxCallback ac = new AjaxCallback<String>() {
             public void callback(String url, String object, AjaxStatus status) {
-                Toast.makeText(ItemCreateActivity.this, "test"+status.getCode(), Toast.LENGTH_LONG).show();
                 if (status.getCode() == 201) {
                     Toast.makeText(ItemCreateActivity.this, "아이템을 성공적으로 등록했습니다!", Toast.LENGTH_SHORT).show();
                     finish();

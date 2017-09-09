@@ -96,7 +96,7 @@ public class ItemsActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = arr.getJSONObject(i);
                             Log.d("Test", "" + arr.length());
-                            adapter.add(new LightItem(jsonObject.getInt("id"), jsonObject.getString("title"), jsonObject.getString("content"), getResources().getString(R.string.url_host) + jsonObject.getString("thumbnail"), jsonObject.getDouble("amount")));
+                            adapter.add(new LightItem(jsonObject.getInt("id"), jsonObject.getString("author"), jsonObject.getString("title"), jsonObject.getString("content"), getResources().getString(R.string.url_host) + jsonObject.getString("thumbnail"), jsonObject.getDouble("score"), jsonObject.getInt("amount"), jsonObject.getString("temperature"), jsonObject.getJSONArray("tags")));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

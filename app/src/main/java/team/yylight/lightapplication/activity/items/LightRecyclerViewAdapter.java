@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.androidquery.AQuery;
 import com.androidquery.util.Constants;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,13 +41,12 @@ public class LightRecyclerViewAdapter extends RecyclerView.Adapter<LightRecycler
     @Override
     public void onBindViewHolder(LightItemViewHolder lightItemViewHolder, int i) {
         LightItem lightItem = lightItemList.get(i);
-
-        AQuery aq = new AQuery(mContext);
-        aq.id(lightItemViewHolder.imageView).image(lightItem.getImageUrl(), false, true, 0, 0, null, Constants.FADE_IN);
+        Picasso.with(mContext).load(lightItem.getImageUrl()).resize(370, 300).into(lightItemViewHolder.imageView);
         lightItemViewHolder.itemNumber = lightItem.getNumber();
         lightItemViewHolder.tv_title.setText(lightItem.getTitle());
         lightItemViewHolder.tv_subscribe.setText(lightItem.getSubscribe());
         lightItemViewHolder.ratingBar.setRating((float)lightItem.getScore());
+        lightItemViewHolder.setItem(lightItem);
     }
 
     @Override
@@ -70,13 +70,27 @@ public class LightRecyclerViewAdapter extends RecyclerView.Adapter<LightRecycler
         protected MaterialRatingBar ratingBar;
 
         protected int itemNumber;
+        private LightItem item;
+
+        public void setItem(LightItem item){
+            this.item = item;
+        }
 
         public LightItemViewHolder(View view) {
             super(view);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mContext.startActivity(new Intent(mContext, ItemInfoActivity.class));
+                    Intent intent = new Intent(mContext, ItemInfoActivity.class);
+                    intent.putExtra("title", item.getTitle());
+                    intent.putExtra("content", item.getSubscribe());
+                    intent.putExtra("image", item.getImageUrl());
+                    intent.putExtra("score", item.getScore());
+                    intent.putExtra("number", item.getNumber());
+                    intent.putExtra("amount", item.getAmount());
+                    intent.putExtra("temperature", item.getTemperature());
+                    intent.putExtra("writer", item.getWriter());
+                    mContext.startActivity(intent);
                 }
             });
             this.imageView = view.findViewById(R.id.iv_thumbnail);
