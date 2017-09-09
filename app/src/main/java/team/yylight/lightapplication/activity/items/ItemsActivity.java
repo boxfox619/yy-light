@@ -91,13 +91,18 @@ public class ItemsActivity extends AppCompatActivity {
             public void callback(String url, JSONArray arr, AjaxStatus status)
             {
                 adapter.clear();
-                for(int i = 0; i<arr.length(); i++){
-                    try {
-                        JSONObject jsonObject = arr.getJSONObject(i);
-                        adapter.add(new LightItem(jsonObject.getInt("id"), jsonObject.getString("title"),jsonObject.getString("content"), getResources().getString(R.string.url_host)+jsonObject.getString("thumbnail"),jsonObject.getDouble("amount")));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                if(status.getCode()==200) {
+                    for (int i = 0; i < arr.length(); i++) {
+                        try {
+                            JSONObject jsonObject = arr.getJSONObject(i);
+                            Log.d("Test", "" + arr.length());
+                            adapter.add(new LightItem(jsonObject.getInt("id"), jsonObject.getString("title"), jsonObject.getString("content"), getResources().getString(R.string.url_host) + jsonObject.getString("thumbnail"), jsonObject.getDouble("amount")));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
+                }else{
+                    Log.e("ItemsActivity", status.getMessage()+status.getError());
                 }
             }
         });

@@ -109,7 +109,7 @@ public class ItemInfoActivity extends AppCompatActivity {
 
     private void loadItemInfo() {
         final AQuery aq = new AQuery(ItemInfoActivity.this);
-        aq.ajax(getResources().getString(R.string.url_load_item_info), JSONObject.class, new AjaxCallback<JSONObject>() {
+        aq.ajax(getString(R.string.url_host)+getString(R.string.url_load_item_info), JSONObject.class, new AjaxCallback<JSONObject>() {
             public void callback(String url, JSONObject object, AjaxStatus status) {
                 if (status.getCode() == 200)
                     try {

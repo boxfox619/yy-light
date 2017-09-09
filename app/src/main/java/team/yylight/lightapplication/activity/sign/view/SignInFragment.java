@@ -3,6 +3,7 @@ package team.yylight.lightapplication.activity.sign.view;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,9 @@ import android.widget.Toast;
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -83,21 +87,26 @@ public class SignInFragment extends SignFragment {
     }
 
     private void login() {
-        if (!checkInputs()) {
+        if (checkInputs()) {
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
             final String id = et_id.getText().toString();
             final String password = et_password.getText().toString();
-            Map<String, Object> params = new HashMap<>();
-            params.put("username", id);
-            params.put("password", et_password.getText());
+
             AQuery aq = new AQuery(getActivity());
-            aq.ajax(getResources().getString(R.string.url_host) + getResources().getString(R.string.url_login), params, String.class, new AjaxCallback<String>() {
-                public void callback(String url, String result, AjaxStatus status) {
+            AjaxCallback ac = new AjaxCallback<JSONObject>() {
+                public void callback(String url, JSONObject result, AjaxStatus status) {
                     if (status.getCode() == 200) {
                         Realm realm = Realm.getDefaultInstance();
                         realm.beginTransaction();
                         UserInfo info = realm.createObject(UserInfo.class);
                         info.setId(id);
                         info.setPassword(password);
+                        try {
+                            info.setToken(result.getString("token"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         realm.commitTransaction();
                         startActivity(new Intent(getActivity(), MainActivity.class));
                         getActivity().finish();
@@ -105,7 +114,10 @@ public class SignInFragment extends SignFragment {
                         Toast.makeText(getActivity(), "로그인 실패", Toast.LENGTH_LONG).show();
                     }
                 }
-            });
+            };
+            ac.param("username", id);
+            ac.param("password", et_password.getText());
+            aq.ajax(getResources().getString(R.string.url_host) + getResources().getString(R.string.url_login), JSONObject.class, ac);
         }
     }
 }

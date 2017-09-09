@@ -42,7 +42,9 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.realm.Realm;
 import team.yylight.lightapplication.R;
+import team.yylight.lightapplication.data.UserInfo;
 
 public class ItemCreateActivity extends AppCompatActivity {
     private static final int PICK_IMAGE = 1234;
@@ -202,25 +204,28 @@ public class ItemCreateActivity extends AppCompatActivity {
             return;
         }
         String tagsStr = tags.getText().toString().replaceAll(",", "+");
-        Map<String, Object> params = new HashMap<>();
-        params.put("title", etTitle.getText().toString());
-        params.put("content", etContent.getText().toString());
-        params.put("thumbnail", selectedImageFile);
-        params.put("tags", tagsStr);
-        params.put("visible", visibleItemShow.isChecked());
-        params.put("amount", amount.getProgress());
-        params.put("temperature", currentTempeature);
-        AQuery aq = new AQuery(ItemCreateActivity.this);
-        aq.ajax(getString(R.string.url_host) + getResources().getString(R.string.url_upload_item), params, String.class, new AjaxCallback<String>() {
+        AjaxCallback ac = new AjaxCallback<String>() {
             public void callback(String url, String object, AjaxStatus status) {
-                if (status.getCode() == 200) {
+                Toast.makeText(ItemCreateActivity.this, "test"+status.getCode(), Toast.LENGTH_LONG).show();
+                if (status.getCode() == 201) {
+                    Toast.makeText(ItemCreateActivity.this, "아이템을 성공적으로 등록했습니다!", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
                     Toast.makeText(ItemCreateActivity.this, "아이템 생성에 실패했습니다.", Toast.LENGTH_SHORT).show();
                     Log.e("CreateItem", status.getMessage() + "   " + status.getError() + "   " + result);
                 }
             }
-        });
+        };
+        ac.param("title", etTitle.getText().toString());
+        ac.param("content", etContent.getText().toString());
+        ac.param("thumbnail", selectedImageFile);
+        ac.param("tags", tagsStr);
+        ac.param("visible", visibleItemShow.isChecked());
+        ac.param("amount", amount.getProgress());
+        ac.param("temperature", currentTempeature);
+        ac.header("Authorization", Realm.getDefaultInstance().where(UserInfo.class).findFirst().getToken());
+        AQuery aq = new AQuery(ItemCreateActivity.this);
+        aq.ajax(getString(R.string.url_host) + getResources().getString(R.string.url_upload_item), String.class, ac);
     }
 
 

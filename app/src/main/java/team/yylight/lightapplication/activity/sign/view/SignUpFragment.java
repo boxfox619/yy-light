@@ -22,6 +22,9 @@ import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -154,10 +157,16 @@ public class SignUpFragment extends SignFragment {
             params.put("birthday", info.getBirthday());
             params.put("gender", info.getSex());
             AQuery aq = new AQuery(getActivity());
-            aq.ajax(getResources().getString(R.string.url_host) + getResources().getString(R.string.url_register), params, String.class, new AjaxCallback<String>() {
-                public void callback(String url, String result, AjaxStatus status) {
+            aq.ajax(getResources().getString(R.string.url_host) + getResources().getString(R.string.url_register), params, JSONObject.class, new AjaxCallback<JSONObject>() {
+                public void callback(String url, JSONObject result, AjaxStatus status) {
+                    Log.e("SIGNUP", status.getCode()+"asda");
                     if (status.getCode() == 200) {
                         Realm realm = Realm.getDefaultInstance();
+                        try {
+                            info.setToken(result.getString("token"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         realm.beginTransaction();
                         realm.copyToRealm(info);
                         realm.commitTransaction();

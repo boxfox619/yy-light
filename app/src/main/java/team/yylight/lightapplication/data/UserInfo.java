@@ -7,7 +7,7 @@ import io.realm.RealmObject;
  */
 
 public class UserInfo extends RealmObject {
-    private String id, password, birthday;
+    private String id, password, birthday, token;
     private boolean sex;
 
     public UserInfo() {}
@@ -49,5 +49,13 @@ public class UserInfo extends RealmObject {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = "Token "+token;
     }
 }
