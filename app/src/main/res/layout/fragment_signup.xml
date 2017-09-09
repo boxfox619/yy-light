@@ -44,10 +44,10 @@
             android:id="@+id/tab_first"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:scale_height="170"
+            app:scale_height="185"
             app:scale_width="250"
             app:scale_left="75"
-            app:scale_top="80"
+            app:scale_top="65"
             android:orientation="vertical">
 
             <android.support.design.widget.TextInputLayout

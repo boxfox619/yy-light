@@ -143,6 +143,8 @@ public class SignUpFragment extends SignFragment {
                 tab2.setBackground(getResources().getDrawable(R.drawable.circle_dark));
                 btn_action.setText("회원가입");
                 nextStep = !nextStep;
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
             }
         } else {
             final UserInfo info = new UserInfo(et_id.getText().toString(), et_password.getText().toString(), tv_birthday.getText().toString(), rbSexMan.isChecked());
