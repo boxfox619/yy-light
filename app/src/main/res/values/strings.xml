@@ -36,7 +36,7 @@
     <string name="item_create_visible_comment">Visible comment???</string>
     <string name="item_create_tags">태그</string>
     <string name="item_create_image">이미지</string>
-    <string name="item_create_upload_image">이미지 업로드</string>
+    <string name="item_create_upload_image">미리보기 이미지 선택</string>
     <string name="item_create_create">조명 추가</string>
     <string name="item_connect">조명 연결</string>
     <string name="item_start_connect">시작하기</string>

@@ -1,25 +1,16 @@
 package team.yylight.lightapplication;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.renderscript.Allocation;
-import android.renderscript.Element;
-import android.renderscript.RenderScript;
-import android.renderscript.ScriptIntrinsicBlur;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import io.realm.Realm;
+import team.yylight.lightapplication.activity.ConnectActivity;
 import team.yylight.lightapplication.activity.ItemCreateActivity;
-import team.yylight.lightapplication.activity.SplashActivity;
 import team.yylight.lightapplication.activity.items.ItemsActivity;
-import team.yylight.lightapplication.activity.sign.SignActivity;
 
 public class MainActivity extends AppCompatActivity {
     private TextView tvLightName, tvWate, tvTempeture;
@@ -31,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //setBlurImage((ImageView) findViewById(R.id.iv_background));
-
 
         tvLightName = (TextView) findViewById(R.id.tv_name);
         tvWate = (TextView) findViewById(R.id.tv_wate);
@@ -54,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         ibInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ConnectActivity.class));
             }
         });
     }

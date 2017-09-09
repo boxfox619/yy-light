@@ -36,10 +36,7 @@ public class UserInfo extends RealmObject {
     }
 
     public String getSex() {
-        if(sex)
-            return "True";
-        else
-            return  "False";
+        return sex? "True":"False";
     }
 
     public void setSex(boolean sex) {
