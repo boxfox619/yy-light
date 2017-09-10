@@ -2,6 +2,7 @@ package team.yylight.lightapplication.activity;
 
 import android.app.ActionBar;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -13,6 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.androidquery.AQuery;
@@ -132,5 +134,30 @@ public class ItemInfoActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void showRatingDialog(){
+        final View view = getLayoutInflater().inflate(R.layout.dialog_rates, null);
+        AlertDialog dialog = new AlertDialog.Builder(ItemInfoActivity.this)
+                .setView(view)
+                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        float rate = ((RatingBar)view.findViewById(R.id.rb_score)).getRating();
+                        AQuery aq = new AQuery(ItemInfoActivity.this);
+                        aq.ajax(getString(R.string.url_host)+getString(R.string.url_rate)+"?rate="+rate, String.class, new AjaxCallback<String>(){
+                            @Override
+                            public void callback(String url, String object, AjaxStatus status) {
+                            }
+                        });
+                    }
+                })
+                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                })
+                .create();
     }
 }
