@@ -10,6 +10,7 @@
     <string name="url_image_upload"></string>
     <string name="url_login">/accounts/sign-in/</string>
     <string name="url_register">/accounts/sign-up/</string>
+    <string name="url_connect"></string>
 
     <string name="app_name">NutritionLight</string>
 
