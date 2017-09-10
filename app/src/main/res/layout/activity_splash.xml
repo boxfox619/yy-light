@@ -12,16 +12,4 @@
         android:scaleType="centerCrop"
         android:src="@drawable/main_image"/>
 
-    <Button
-        android:id="@+id/btn_start"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:background="@drawable/rounded_button_primary"
-        android:text="@string/get_tarted"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
-        android:textColor="@android:color/white"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
 </RelativeLayout>

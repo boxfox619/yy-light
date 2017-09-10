@@ -139,6 +139,7 @@ public class ItemInfoActivity extends AppCompatActivity {
     private void showRatingDialog(){
         final View view = getLayoutInflater().inflate(R.layout.dialog_rates, null);
         AlertDialog dialog = new AlertDialog.Builder(ItemInfoActivity.this)
+                .setTitle("별점을 선택해 주세요")
                 .setView(view)
                 .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override

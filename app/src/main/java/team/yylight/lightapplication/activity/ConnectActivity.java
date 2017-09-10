@@ -12,7 +12,9 @@ import com.androidquery.callback.AjaxStatus;
 
 import org.json.JSONObject;
 
+import io.realm.Realm;
 import team.yylight.lightapplication.R;
+import team.yylight.lightapplication.data.UserInfo;
 
 /**
  * Created by boxfox on 2017-09-09.
@@ -44,9 +46,7 @@ public class ConnectActivity extends AppCompatActivity {
 
     private void connect(String str){
         AQuery aq = new AQuery(this);
-        first.setVisibility(View.GONE);
-        second.setVisibility(View.VISIBLE);
-        aq.ajax(getString(R.string.url_host)+getString(R.string.url_connect), JSONObject.class, new AjaxCallback<JSONObject>(){
+        AjaxCallback ac = new AjaxCallback<JSONObject>(){
             @Override
             public void callback(String url, JSONObject object, AjaxStatus status) {
                 second.setVisibility(View.GONE);
@@ -57,6 +57,11 @@ public class ConnectActivity extends AppCompatActivity {
                     first.setVisibility(View.VISIBLE);
                 }
             }
-        });
+        };
+        ac.param("DeviceID", str);
+        ac.header("Authorization", Realm.getDefaultInstance().where(UserInfo.class).findFirst().getToken());
+        first.setVisibility(View.GONE);
+        second.setVisibility(View.VISIBLE);
+        aq.ajax(getString(R.string.url_host)+getString(R.string.url_connect), JSONObject.class, ac);
     }
 }

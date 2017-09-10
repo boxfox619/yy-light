@@ -1,6 +1,8 @@
 package team.yylight.lightapplication.activity;
 
 import android.content.Intent;
+import android.os.Build;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +15,6 @@ import team.yylight.lightapplication.activity.sign.SignActivity;
 import team.yylight.lightapplication.data.UserInfo;
 
 public class SplashActivity extends AppCompatActivity {
-    private Button btnStart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +22,10 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         Realm.init(this);
 
-        btnStart = (Button) findViewById(R.id.btn_start);
-        btnStart.setOnClickListener(new View.OnClickListener() {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
             @Override
-            public void onClick(View view) {
+            public void run() {
                 Intent targetActivity;
                 if(isLogined()){
                     targetActivity = new Intent(SplashActivity.this, MainActivity.class);
@@ -34,7 +35,8 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(targetActivity);
                 finish();
             }
-        });
+        }, 3000);
+
     }
 
     private boolean isLogined(){
