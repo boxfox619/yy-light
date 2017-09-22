@@ -44,13 +44,17 @@ public class ConnectActivity extends AppCompatActivity {
         });
     }
 
-    private void connect(String str){
+    private void connect(final String str){
         AQuery aq = new AQuery(this);
         AjaxCallback ac = new AjaxCallback<JSONObject>(){
             @Override
             public void callback(String url, JSONObject object, AjaxStatus status) {
                 second.setVisibility(View.GONE);
                 if(status.getCode() >= 200){
+                    Realm realm = Realm.getDefaultInstance();
+                    realm.beginTransaction();
+                    realm.where(UserInfo.class).findFirst().setDeviceId(str);
+                    realm.commitTransaction();
                     finish.setVisibility(View.VISIBLE);
                 }else{
                     Toast.makeText(ConnectActivity.this, "기기 연결에 실패했습니다!", Toast.LENGTH_SHORT).show();
@@ -58,7 +62,7 @@ public class ConnectActivity extends AppCompatActivity {
                 }
             }
         };
-        ac.param("DeviceID", str);
+        ac.param("device", str);
         ac.header("Authorization", Realm.getDefaultInstance().where(UserInfo.class).findFirst().getToken());
         first.setVisibility(View.GONE);
         second.setVisibility(View.VISIBLE);

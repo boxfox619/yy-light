@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
@@ -26,9 +27,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import io.realm.Realm;
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
 import team.yylight.lightapplication.R;
+import team.yylight.lightapplication.data.UserInfo;
 
 public class ItemInfoActivity extends AppCompatActivity {
     private TextView tv_summary, tv_score, tv_writer, tv_date;
@@ -79,7 +84,7 @@ public class ItemInfoActivity extends AppCompatActivity {
                 return true;
 
             case R.id.action_save:
-                saveItem();
+                useImmediately();
                 return true;
             case R.id.action_check:
                 //item check
@@ -88,25 +93,6 @@ public class ItemInfoActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    private void saveItem() {
-        Realm realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
-        realm.commitTransaction();
-
-        View view = getLayoutInflater().inflate(R.layout.layout_saved_dialog, null);
-        AlertDialog dialog = new AlertDialog.Builder(ItemInfoActivity.this)
-                .setView(view)
-                .create();
-
-        Window window = dialog.getWindow();
-        WindowManager.LayoutParams wlp = window.getAttributes();
-
-        wlp.gravity = Gravity.BOTTOM;
-        wlp.flags &= ~WindowManager.LayoutParams.FLAG_DIM_BEHIND;
-        window.setAttributes(wlp);
-        dialog.show();
     }
 
     private void loadItemInfo() {
@@ -136,6 +122,36 @@ public class ItemInfoActivity extends AppCompatActivity {
         });
     }
 
+    private void useImmediately(){
+        String deviceId = Realm.getDefaultInstance().where(UserInfo.class).findFirst().getDeviceId();
+        if(deviceId==null){
+            Toast.makeText(this, "연결된 기기가 없습니다!", Toast.LENGTH_LONG).show();
+        }else {
+            AjaxCallback<JSONObject> ac = new AjaxCallback<JSONObject>() {
+                @Override
+                public void callback(String url, JSONObject object, AjaxStatus status) {
+                    View view = getLayoutInflater().inflate(R.layout.layout_saved_dialog, null);
+                    AlertDialog dialog = new AlertDialog.Builder(ItemInfoActivity.this)
+                            .setView(view)
+                            .create();
+
+                    Window window = dialog.getWindow();
+                    WindowManager.LayoutParams wlp = window.getAttributes();
+
+                    wlp.gravity = Gravity.BOTTOM;
+                    wlp.flags &= ~WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+                    window.setAttributes(wlp);
+                    dialog.show();
+                }
+            };
+            ac.param("deviceID", deviceId);
+            ac.param("light", getIntent().getIntExtra("number", 0));
+            ac.header("Authorization", Realm.getDefaultInstance().where(UserInfo.class).findFirst().getToken());
+            new AQuery(this).ajax(getString(R.string.url_host) + getString(R.string.url_use), JSONObject.class, ac);
+        }
+
+    }
+
     private void showRatingDialog(){
         final View view = getLayoutInflater().inflate(R.layout.dialog_rates, null);
         AlertDialog dialog = new AlertDialog.Builder(ItemInfoActivity.this)
@@ -146,11 +162,16 @@ public class ItemInfoActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         float rate = ((RatingBar)view.findViewById(R.id.rb_score)).getRating();
                         AQuery aq = new AQuery(ItemInfoActivity.this);
-                        aq.ajax(getString(R.string.url_host)+getString(R.string.url_rate)+"?rate="+rate, String.class, new AjaxCallback<String>(){
+                        AjaxCallback ac = new AjaxCallback<String>(){
                             @Override
                             public void callback(String url, String object, AjaxStatus status) {
+
                             }
-                        });
+                        };
+                        ac.param("rate", rate);
+                        ac.param("light", getIntent().getIntExtra("number", 0));
+                        ac.header("Authorization", Realm.getDefaultInstance().where(UserInfo.class).findFirst().getToken());
+                        aq.ajax(getString(R.string.url_host)+getString(R.string.url_rate), String.class, ac);
                     }
                 })
                 .setNegativeButton("취소", new DialogInterface.OnClickListener() {

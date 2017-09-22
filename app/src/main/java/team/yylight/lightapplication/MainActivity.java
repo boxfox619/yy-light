@@ -8,9 +8,18 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.androidquery.AQuery;
+import com.androidquery.callback.AjaxCallback;
+import com.androidquery.callback.AjaxStatus;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import io.realm.Realm;
 import team.yylight.lightapplication.activity.ConnectActivity;
 import team.yylight.lightapplication.activity.ItemCreateActivity;
 import team.yylight.lightapplication.activity.items.ItemsActivity;
+import team.yylight.lightapplication.data.UserInfo;
 
 public class MainActivity extends AppCompatActivity {
     private TextView tvLightName, tvWate, tvTempeture;
@@ -47,6 +56,28 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, ConnectActivity.class));
             }
         });
+    }
+
+    private void updateDeviceState() {
+        String deviceId = Realm.getDefaultInstance().where(UserInfo.class).findFirst().getDeviceId();
+        if (deviceId != null) {
+            AjaxCallback<JSONObject> ac = new AjaxCallback<JSONObject>() {
+                @Override
+                public void callback(String url, JSONObject result, AjaxStatus status) {
+                    try {
+                        tvLightName.setText(result.getInt("Name") + "");
+                        tvWate.setText(result.getInt("Wate") + "");
+                        tvTempeture.setText(result.getInt("Tempeature") + "");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            ac.param("deviceID", deviceId);
+            ac.header("Authorization", Realm.getDefaultInstance().where(UserInfo.class).findFirst().getToken());
+            AQuery aq = new AQuery(this);
+            aq.ajax(getString(R.string.url_host) + getString(R.string.url_device_state), JSONObject.class, ac);
+        }
     }
 
     /*private void setBlurImage(ImageView imageView) {

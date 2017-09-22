@@ -7,10 +7,11 @@ import io.realm.RealmObject;
  */
 
 public class UserInfo extends RealmObject {
-    private String id, password, birthday, token;
+    private String id, password, birthday, token, deviceId;
     private boolean sex;
 
-    public UserInfo() {}
+    public UserInfo() {
+    }
 
     public UserInfo(String id, String password, String birthday, boolean sex) {
         this.id = id;
@@ -36,7 +37,7 @@ public class UserInfo extends RealmObject {
     }
 
     public String getSex() {
-        return sex? "True":"False";
+        return sex ? "True" : "False";
     }
 
     public void setSex(boolean sex) {
@@ -56,6 +57,14 @@ public class UserInfo extends RealmObject {
     }
 
     public void setToken(String token) {
-        this.token = "Token "+token;
+        this.token = "Token " + token;
+    }
+
+    public String getDeviceId() {
+        return deviceId;
+    }
+
+    public void setDeviceId(String deviceId) {
+        this.deviceId = deviceId;
     }
 }
