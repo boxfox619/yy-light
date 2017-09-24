@@ -203,6 +203,9 @@ public class ItemCreateActivity extends AppCompatActivity {
             etTitle.setError("타이틀을 입력해 주세요");
             return;
         }
+        if(selectedImageFile==null){
+            Toast.makeText(this, "썸네일 이미지를 선택해 주세요", Toast.LENGTH_LONG).show();
+        }
         String tagsStr = tags.getText().toString().replaceAll(",", "+");
         AjaxCallback ac = new AjaxCallback<String>() {
             public void callback(String url, String object, AjaxStatus status) {

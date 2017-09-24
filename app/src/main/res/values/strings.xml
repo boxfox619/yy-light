@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="url_host">http://ss5h.namsu.xyz:9940</string>
+    <string name="url_host">http://kafuuchino.moe:9940</string>
     <string name="url_load_item_info"></string>
     <string name="url_load_items">/lights/list/</string>
     <string name="url_upload_item">/lights/create/</string>
@@ -11,9 +11,9 @@
     <string name="url_login">/accounts/sign-in/</string>
     <string name="url_register">/accounts/sign-up/</string>
     <string name="url_connect">/devices/connection/</string>
-    <string name="url_device_state">devices/state/</string>
-    <string name="url_rate">/lights/review/create</string>
-    <string name="url_use">/devices/pk_control/</string>
+    <string name="url_device_state">/devices/state/</string>
+    <string name="url_rate">/lights/review/create/</string>
+    <string name="url_use">/devices/pk-control/</string>
 
     <string name="app_name">NutritionLight</string>
 

@@ -1,10 +1,13 @@
 package team.yylight.lightapplication.activity.items;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -25,7 +28,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import team.yylight.lightapplication.MainActivity;
 import team.yylight.lightapplication.R;
+import team.yylight.lightapplication.activity.ItemCreateActivity;
 import team.yylight.lightapplication.data.LightItem;
 
 public class ItemsActivity extends AppCompatActivity {
@@ -40,10 +45,14 @@ public class ItemsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_items);
 
         et_search = (EditText) findViewById(R.id.et_search);
-        et_search.setOnKeyListener(new View.OnKeyListener() {
+        et_search.addTextChangedListener(new TextWatcher() {
+
             @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)&&et_search.getText().toString().length()>0) {
+            public void afterTextChanged(Editable s) {
+
+                if (et_search.getText().equals("")) {
+                    loadLightItems();
+                } else {
                     AQuery aq = new AQuery(ItemsActivity.this);
                     aq.ajax(getString(R.string.url_host) + getString(R.string.url_search_tag) + "?tags=" + et_search.getText().toString().replaceAll(",", "+"), JSONArray.class, new AjaxCallback<JSONArray>() {
                         @Override
@@ -55,9 +64,17 @@ public class ItemsActivity extends AppCompatActivity {
                             }
                         }
                     });
-                    return true;
                 }
-                return false;
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
             }
         });
 
@@ -98,8 +115,7 @@ public class ItemsActivity extends AppCompatActivity {
                 return true;
 
             case R.id.action_add:
-                //item add
-
+                startActivity(new Intent(ItemsActivity.this, ItemCreateActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -111,7 +127,8 @@ public class ItemsActivity extends AppCompatActivity {
         for (int i = 0; i < arr.length(); i++) {
             try {
                 JSONObject jsonObject = arr.getJSONObject(i);
-                adapter.add(new LightItem(jsonObject.getInt("id"), jsonObject.getString("author"), jsonObject.getString("title"), jsonObject.getString("content"), getResources().getString(R.string.url_host) + jsonObject.getString("thumbnail"), jsonObject.getDouble("score"), jsonObject.getInt("amount"), jsonObject.getString("temperature"), jsonObject.getJSONArray("tags")));
+                Log.d("ITem", jsonObject.toString());
+                adapter.add(new LightItem(jsonObject.getInt("id"), jsonObject.getString("author"), jsonObject.getString("title"), jsonObject.getString("content"), getResources().getString(R.string.url_host) + jsonObject.getString("thumbnail"), jsonObject.getInt("amount"), jsonObject.getString("temperature"), jsonObject.getJSONArray("tags"), jsonObject.getDouble("average")));
             } catch (JSONException e) {
                 e.printStackTrace();
             }

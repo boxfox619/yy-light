@@ -45,7 +45,8 @@ public class LightRecyclerViewAdapter extends RecyclerView.Adapter<LightRecycler
         lightItemViewHolder.itemNumber = lightItem.getNumber();
         lightItemViewHolder.tv_title.setText(lightItem.getTitle());
         lightItemViewHolder.tv_subscribe.setText(lightItem.getSubscribe());
-        lightItemViewHolder.ratingBar.setRating((float)lightItem.getScore());
+        lightItemViewHolder.ratingBar.setMax(50);
+        lightItemViewHolder.ratingBar.setProgress((int) lightItem.getScore()*10);
         lightItemViewHolder.setItem(lightItem);
     }
 
@@ -82,14 +83,15 @@ public class LightRecyclerViewAdapter extends RecyclerView.Adapter<LightRecycler
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(mContext, ItemInfoActivity.class);
+                    intent.putExtra("score", item.getScore());
                     intent.putExtra("title", item.getTitle());
                     intent.putExtra("content", item.getSubscribe());
                     intent.putExtra("image", item.getImageUrl());
-                    intent.putExtra("score", item.getScore());
                     intent.putExtra("number", item.getNumber());
                     intent.putExtra("amount", item.getAmount());
                     intent.putExtra("temperature", item.getTemperature());
                     intent.putExtra("writer", item.getWriter());
+                    intent.putExtra("tags", item.getTags().toString());
                     mContext.startActivity(intent);
                 }
             });

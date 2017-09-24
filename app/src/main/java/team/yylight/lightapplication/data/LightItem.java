@@ -13,16 +13,16 @@ public class LightItem {
     private double score;
     private JSONArray tags;
 
-    public LightItem(int number, String writer, String title, String subscribe, String imageUrl, double score, int amount, String temperature, JSONArray tags) {
+    public LightItem(int number, String writer, String title, String subscribe, String imageUrl, int amount, String temperature, JSONArray tags, double score) {
         this.number = number;
         this.title = title;
         this.subscribe = subscribe;
         this.imageUrl = imageUrl;
-        this.score = score;
         this.amount = amount;
         this.temperature = temperature;
         this.tags = tags;
         this.writer = writer;
+        this.score = score;
     }
 
     public String getTitle() {
@@ -47,14 +47,6 @@ public class LightItem {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
-    }
-
-    public double getScore() {
-        return score;
-    }
-
-    public void setScore(double score) {
-        this.score = score;
     }
 
     public int getNumber() {
@@ -95,5 +87,13 @@ public class LightItem {
 
     public void setWriter(String writer) {
         this.writer = writer;
+    }
+
+    public double getScore() {
+        return score;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
     }
 }

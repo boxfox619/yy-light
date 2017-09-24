@@ -2,6 +2,7 @@ package team.yylight.lightapplication.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -21,7 +22,7 @@ import team.yylight.lightapplication.data.UserInfo;
  */
 
 public class ConnectActivity extends AppCompatActivity {
-    private View first,second,finish;
+    private View first, second, finish;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,24 +40,24 @@ public class ConnectActivity extends AppCompatActivity {
         findViewById(R.id.btn_submit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                connect(((EditText)findViewById(R.id.et_code)).getText().toString());
+                connect(((EditText) findViewById(R.id.et_code)).getText().toString());
             }
         });
     }
 
-    private void connect(final String str){
+    private void connect(final String str) {
         AQuery aq = new AQuery(this);
-        AjaxCallback ac = new AjaxCallback<JSONObject>(){
+        AjaxCallback ac = new AjaxCallback<String>() {
             @Override
-            public void callback(String url, JSONObject object, AjaxStatus status) {
+            public void callback(String url, String object, AjaxStatus status) {
                 second.setVisibility(View.GONE);
-                if(status.getCode() >= 200){
+                if (300 > status.getCode() && status.getCode() >= 200) {
                     Realm realm = Realm.getDefaultInstance();
                     realm.beginTransaction();
                     realm.where(UserInfo.class).findFirst().setDeviceId(str);
                     realm.commitTransaction();
                     finish.setVisibility(View.VISIBLE);
-                }else{
+                } else {
                     Toast.makeText(ConnectActivity.this, "기기 연결에 실패했습니다!", Toast.LENGTH_SHORT).show();
                     first.setVisibility(View.VISIBLE);
                 }
@@ -66,6 +67,6 @@ public class ConnectActivity extends AppCompatActivity {
         ac.header("Authorization", Realm.getDefaultInstance().where(UserInfo.class).findFirst().getToken());
         first.setVisibility(View.GONE);
         second.setVisibility(View.VISIBLE);
-        aq.ajax(getString(R.string.url_host)+getString(R.string.url_connect), JSONObject.class, ac);
+        aq.ajax(getString(R.string.url_host) + getString(R.string.url_connect), String.class, ac);
     }
 }
