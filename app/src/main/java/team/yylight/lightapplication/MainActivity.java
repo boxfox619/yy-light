@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void callback(String url, JSONObject object, AjaxStatus status) {
                     if (object != null) {
+                        Toast.make(MainActivity.this, "연결 됐어!", Toast.LENGTH_SHORT).show();
                         try {
                             JSONObject light = object.getJSONObject("light");
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -88,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     } else {
+                        Toast.make(MainActivity.this, "연결 안됨!", Toast.LENGTH_SHORT).show();
                         Log.e("LightState", status.getCode() + status.getMessage() + "  " + status.getError());
                     }
                 }
