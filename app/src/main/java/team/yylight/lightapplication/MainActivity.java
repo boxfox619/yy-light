@@ -97,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
             ac.param("deviceID", deviceId);
             ac.header("Authorization", Realm.getDefaultInstance().where(UserInfo.class).findFirst().getToken());
             new AQuery(this).ajax(getString(R.string.url_host) + getString(R.string.url_device_state), JSONObject.class, ac);
+        }else{
+            Toast.make(MainActivity.this, "디바이스 없음", Toast.LENGTH_SHORT).show();
         }
     }
 
